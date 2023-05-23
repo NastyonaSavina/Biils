@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Bills/static/css/main.b7cca806.css",
+    "main.js": "/Bills/static/js/main.3efb764b.js",
+    "static/js/702.62494d10.chunk.js": "/Bills/static/js/702.62494d10.chunk.js",
+    "static/media/accounting_logo.png": "/Bills/static/media/accounting_logo.7560557ddbdbd2b8fea5.png",
+    "index.html": "/Bills/index.html",
+    "main.b7cca806.css.map": "/Bills/static/css/main.b7cca806.css.map",
+    "main.3efb764b.js.map": "/Bills/static/js/main.3efb764b.js.map",
+    "702.62494d10.chunk.js.map": "/Bills/static/js/702.62494d10.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b7cca806.css",
+    "static/js/main.3efb764b.js"
+  ]
+}
