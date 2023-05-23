@@ -11,16 +11,9 @@ export const Navigation = () => {
             <div className="d-flex flex-column justify-content-between h-100">
                 <div className="d-flex flex-column justify-content-between">
                     <Logo />
-
-                
-                            <NavLink to="/" className="btn btn-outline-primary mb-3" >
-                                Bills table
-                            </NavLink>
-                            <NavLink to="/add-contact" className="btn btn-outline-primary mb-3" >
-                                Add contact
-                            </NavLink>
-                        
-                    
+                        <NavLink to="/" className="btn btn-outline-primary mb-3" >
+                            Bills table
+                        </NavLink>
                 </div>
             </div>
         </>

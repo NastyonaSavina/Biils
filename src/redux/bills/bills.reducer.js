@@ -32,15 +32,20 @@ const billsSlice = createSlice({
       .addCase(addBill.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items.push(action.payload);
+        state.items.splice(0, 0, action.payload);
       })
       .addCase(addBill.rejected, handleRejected)
       .addCase(updateStatusBill.pending, handlePending)
       .addCase(updateStatusBill.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.items.findIndex(bill => bill.id === action.payload);
-        state.items.splice(index, 1, action.payload);
+        const index = state.items.findIndex(bill => bill._id === action.payload._id);
+        state.items
+          .splice(index, 1, action.payload);
+        const bills = [...state.items];
+        const sortedByIsPaid = bills?.sort(bill => (bill.ispaid ? 1 : -1));
+        state.items = sortedByIsPaid;
+         
       })
       .addCase(updateStatusBill.rejected, handleRejected);
   },

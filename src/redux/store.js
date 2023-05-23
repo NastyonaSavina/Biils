@@ -9,7 +9,7 @@ import {
 } from 'redux-persist';
 
 import { filtersReducer } from './filter/filter.reducer';
-import { billssReducer } from './bills/bills.slice';
+import { billssReducer } from './bills/bills.reducer';
 
 const middleware = [
   ...getDefaultMiddleware({

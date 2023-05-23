@@ -1,28 +1,41 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Row, Col, Card, Table, Button } from 'react-bootstrap';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import { selectFilteredBills } from '../../redux/filter/filter.selector';
-import { fetchBills } from 'redux/bills/bills.operations';
-import { Filter } from 'components/Filter/Filter';
+import { selectFilteredBills, selectedFilter } from '../../redux/filter/filter.selector';
+import { fetchBills, updateStatusBill } from 'redux/bills/bills.operations';
 import CheckCompany from 'components/CheckCompany/CheckCompany';
+import { setFilter } from 'redux/filter/filter.reducer';
+import AddBill from 'components/AddBill/AddBill';
 
 const BillsPage = () => {
   const filteredList = useSelector(selectFilteredBills);
-
+  const currentFilter = useSelector(selectedFilter);
   const dispatch = useDispatch();
 
+
   useEffect(() => {
+
     dispatch(fetchBills());
-  }, [dispatch]);
+        if (currentFilter.length === 0) dispatch(setFilter(['All']));
+
+  }, [dispatch, currentFilter]);
+
+
+  const handleIsPaid = event => {
+    dispatch(updateStatusBill(event.target.name));
+  };
+
+
 
   return (
     <>
-      <CheckCompany />
+      <AddBill />
+      <CheckCompany currentFilter={currentFilter} />
 
+      
       <Row>
         <Col>
           <Card>
@@ -55,7 +68,9 @@ const BillsPage = () => {
                         <td>{new Date(bill.dateOfPayment).toLocaleString()}</td>
                       ) : (
                         <td>
-                          <Button>Is paid</Button>
+                          <Button name={bill._id} onClick={handleIsPaid}>
+                            Is paid
+                          </Button>
                         </td>
                       )}
                     </tr>

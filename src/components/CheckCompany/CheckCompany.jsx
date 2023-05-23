@@ -1,40 +1,43 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setFilter } from "redux/filter/filter.reducer";
-import { selectedFilter } from "redux/filter/filter.selector";
 
 
 
-const CheckCompany = () => {
-
-  
+const CheckCompany = ({currentFilter}) => {
   const dispatch = useDispatch();
-  
-  let oldFilter = useSelector(selectedFilter);
 
 
-  let forFilter = [...oldFilter];
+  let forFilter = [...currentFilter];
+
 
   const handleChange = event => {
+
     if (event.target.checked === true) {
+      
+
       forFilter.push(event.target.value);
 
-      dispatch(setFilter(forFilter.filter(companyName => companyName !== 'All')));
+      dispatch(
+        setFilter(forFilter.filter(companyName => companyName !== 'All'))
+      );
+    } else {
+      dispatch(
+        setFilter(
+          forFilter.filter(companyName => companyName !== event.target.value)
+        )
+      );
+ 
+
     }
-    else (
-      dispatch(setFilter(forFilter.filter(companyName => companyName !== event.target.value)))
-    )
   };
-   
-    
-  
+
 
 
   return (
     <>
       <div className="d-flex align-content-center px-4 justify-content-between mb-3">
-        <div className="d-flex  align-items-center  grid gap-3">
-          <div className="form-check" >
+        <div className="d-flex  align-items-center   grid gap-3">
+          <div className="form-check">
             <input
               className="form-check-input"
               type="checkbox"
@@ -50,12 +53,12 @@ const CheckCompany = () => {
             <input
               className="form-check-input"
               type="checkbox"
-              value="Company6"
+              value="Company2"
               id="flexCheckDefault"
               onChange={handleChange}
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
-              Company6
+              Company2
             </label>
           </div>
           <div className="form-check">
@@ -74,6 +77,18 @@ const CheckCompany = () => {
             <input
               className="form-check-input"
               type="checkbox"
+              value="Company4"
+              id="flexCheckDefault"
+              onChange={handleChange}
+            />
+            <label className="form-check-label" htmlFor="flexCheckDefault">
+              Company4
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
               value="Company5"
               id="flexCheckDefault"
               onChange={handleChange}
@@ -83,9 +98,8 @@ const CheckCompany = () => {
             </label>
           </div>
         </div>
-        <button type="button" className="btn btn-warning">
-          Show all
-        </button>
+
+      
       </div>
     </>
   );
